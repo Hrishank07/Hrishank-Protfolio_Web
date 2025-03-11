@@ -25,7 +25,7 @@ export default function Projects() {
             Coming Soon
           </h2>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            I'm currently working on adding my portfolio projects. Check back soon to see my latest work!
+            I&apos;m currently working on adding my portfolio projects. Check back soon to see my latest work!
           </p>
         </div>
       </div>

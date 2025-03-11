@@ -99,15 +99,15 @@ export default function About() {
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <p className="text-gray-700 dark:text-gray-200">
-            I'm a current student and a soon-to-be graduate from USC's Master of Science in Engineering Management program, with a minor in Business Analytics. My journey in data began with a strong foundation in Electrical and Electronic Engineering, and over the past year, I've honed my skills in data management, process optimization, and cross-functional collaboration. I'm passionate about transforming raw data into actionable insights that drive business performance and foster innovation. </p>
+            I&apos;m a current student and a soon-to-be graduate from USC&apos;s Master of Science in Engineering Management program, with a minor in Business Analytics. My journey in data began with a strong foundation in Electrical and Electronic Engineering, and over the past year, I&apos;ve honed my skills in data management, process optimization, and cross-functional collaboration. I&apos;m passionate about transforming raw data into actionable insights that drive business performance and foster innovation. </p>
             <p className="text-gray-700 dark:text-gray-200">
-            Throughout my internships at leading organizations, I've had the opportunity to collaborate with diverse teams across the U.S. and India. From developing data-driven pricing models that improved accuracy by 20% to designing scalable analytics frameworks that reduced manual intervention by 40%, I thrive on solving complex challenges. I combine technical expertise using tools like SQL, Python, and advanced data visualization with a strategic mindset to create solutions that make a tangible impact.
+            Throughout my internships at leading organizations, I&apos;ve had the opportunity to collaborate with diverse teams across the U.S. and India. From developing data-driven pricing models that improved accuracy by 20% to designing scalable analytics frameworks that reduced manual intervention by 40%, I thrive on solving complex challenges. I combine technical expertise using tools like SQL, Python, and advanced data visualization with a strategic mindset to create solutions that make a tangible impact.
             </p>
             <p className="text-gray-700 dark:text-gray-200">
-            Beyond my technical work, I am a proactive learner and a natural leader. I've led project teams in high-stakes environments, whether it's streamlining operational workflows or negotiating key partnerships. These experiences have taught me the value of clear communication, creative problem solving, and continuous growth.
+            Beyond my technical work, I am a proactive learner and a natural leader. I&apos;ve led project teams in high-stakes environments, whether it&apos;s streamlining operational workflows or negotiating key partnerships. These experiences have taught me the value of clear communication, creative problem solving, and continuous growth.
             </p>
             <p className="text-gray-700 dark:text-gray-200">
-            I'm excited about the future of data analytics and am dedicated to leveraging my skills to help businesses and organizations make informed, data-driven decisions. Thank you for taking the time to get to know me. I look forward to connecting and exploring new opportunities to create meaningful impact.
+            I&apos;m excited about the future of data analytics and am dedicated to leveraging my skills to help businesses and organizations make informed, data-driven decisions. Thank you for taking the time to get to know me. I look forward to connecting and exploring new opportunities to create meaningful impact.
             </p>
           </div>
         </section>
