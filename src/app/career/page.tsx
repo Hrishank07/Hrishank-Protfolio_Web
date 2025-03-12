@@ -30,7 +30,7 @@ const experiences: Experience[] = [
   },
   {
     company: 'RWTH International Academy',
-    role: 'Data Analyst Intern',
+    role: 'Data Analyst Intern: Supply Chain Optimization',
     period: 'Oct 2022 - Dec 2022',
     location: 'Pune, India',
     description: [
@@ -43,7 +43,7 @@ const experiences: Experience[] = [
   },
   {
     company: 'Volkswagen Group Technology Solutions',
-    role: 'Data Analyst Intern',
+    role: 'Software Engineer Trainee: RPA Developer',
     period: 'Apr 2022 - Oct 2022',
     location: 'Pune, India',
     description: [

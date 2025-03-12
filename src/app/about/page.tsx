@@ -45,7 +45,7 @@ const education = [
     degree: 'Bachelor of Technology in Computer Engineering',
     period: 'Aug 2019 - Aug 2023',
     location: 'Pune, India',
-    gpa: '3.7/4.0',
+    gpa: '3.97/4.0',
     description: 'Relevant Courses: Data Structures, Algorithms, Introduction to Python, Object Oriented Programming, Computer Networks, Operating Systems, Database Management Systems, Natural Language Processing, Pattern Recognition, and Machine Learning'
   }
 ];
