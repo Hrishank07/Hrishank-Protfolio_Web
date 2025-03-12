@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="flex space-x-6">
             {/* LinkedIn */}
             <a 
-              href="https://linkedin.com/in/hrishank-chhatbar" 
+              href="https://linkedin.com/in/hrishankk" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300"
@@ -38,7 +38,7 @@ export default function Footer() {
             
             {/* GitHub */}
             <a 
-              href="https://github.com/hrishankchhatbar" 
+              href="https://github.com/Hrishank07" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300"
