@@ -11,4 +11,3 @@
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
-    timeout = 60000
