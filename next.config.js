@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // Required for Netlify static deployment
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
@@ -9,6 +10,7 @@ const nextConfig = {
     optimizeCss: true,
   },
   images: {
+    unoptimized: true, // Required for static export
     domains: ['localhost'],
     formats: ['image/avif', 'image/webp'],
   },
@@ -16,7 +18,7 @@ const nextConfig = {
   compress: true,
   // Optimize fonts
   optimizeFonts: true,
-  // Generate sitemap
+  // Security headers
   async headers() {
     return [
       {
@@ -38,6 +40,8 @@ const nextConfig = {
       },
     ]
   },
+  // Clean up the public folder
+  cleanDistDir: true,
 }
 
 module.exports = nextConfig
