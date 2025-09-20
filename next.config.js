@@ -7,21 +7,19 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   experimental: {
-    optimizeCss: false, // Disabled to prevent critters issues
+    optimizeCss: false,
   },
   images: {
     unoptimized: true,
-    domains: ['localhost'],
+    loader: 'custom',
     formats: ['image/avif', 'image/webp'],
   },
-  // Enable compression
   compress: true,
-  // Optimize fonts
   optimizeFonts: true,
-  // Clean up the public folder
   cleanDistDir: true,
-  // Add trailing slashes
   trailingSlash: true,
+  // Add basePath for static exports
+  basePath: '',
 }
 
 module.exports = nextConfig
