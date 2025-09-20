@@ -7,14 +7,10 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
-# Configure the a11y plugin with longer timeout
 [[plugins]]
   package = "netlify-plugin-a11y"
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
-    timeout = 60000  # Increase timeout to 60 seconds
-
-# Remove other plugins that might cause issues
-[plugins.inputs]
-  baseUrl = "/"
+    timeout = 60000
+    baseUrl = "/"
