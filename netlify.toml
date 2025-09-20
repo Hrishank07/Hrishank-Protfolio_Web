@@ -11,8 +11,6 @@
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
-    failWithIssues = false
-    ignoreDirectories = []
-    ignoreElements = ""
-    ignoreGuidelines = []
-    wcagLevel = "WCAG2AA"
+    ignoreDirectories = ['/admin']        # Optional, directories you want to skip
+    debugMode = false                      # Optional
+    testMode = "warn"  
