@@ -8,7 +8,6 @@ const nextConfig = {
   },
   // Netlify-specific settings
   output: 'standalone',
-  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },

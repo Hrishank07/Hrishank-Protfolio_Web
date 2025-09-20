@@ -4,15 +4,25 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: var(--gradient-opacity);
-  background: radial-gradient(circle at 30% 70%, var(--primary) 0%, transparent 40%),
-              radial-gradient(circle at 70% 30%, var(--accent) 0%, transparent 40%);
-  animation: gradientShift 30s ease infinite;
+  opacity: 0.35; /* Increased from default for more visibility */
+  background: radial-gradient(circle at 30% 70%, var(--primary) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, var(--accent) 0%, transparent 50%);
+  animation: gradientShift 20s ease infinite; /* Faster animation */
 }
 
 @keyframes gradientShift {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.1); }
+  0%, 100% { 
+    transform: rotate(0deg) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.2); /* Increased scale */
+    filter: hue-rotate(45deg); /* Add color shift */
+  }
+  75% {
+    filter: hue-rotate(90deg); /* More pronounced color shift */
+    transform: rotate(270deg) scale(1.1);
+  }
 }
 
 .floatingShapes {
@@ -26,15 +36,15 @@
 .shape {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  animation: float 25s infinite ease-in-out;
+  filter: blur(50px); /* Reduced blur for sharper shapes */
+  animation: float 20s infinite ease-in-out;
 }
 
 .shape1 {
   width: 400px;
   height: 400px;
   background: var(--primary);
-  opacity: 0.02;
+  opacity: 0.05; /* Increased opacity */
   top: -10%;
   left: -10%;
   animation-delay: 0s;
@@ -44,7 +54,7 @@
   width: 350px;
   height: 350px;
   background: var(--accent);
-  opacity: 0.02;
+  opacity: 0.05; /* Increased opacity */
   bottom: -10%;
   right: -10%;
   animation-delay: 8s;
@@ -54,7 +64,7 @@
   width: 300px;
   height: 300px;
   background: var(--primary-light);
-  opacity: 0.02;
+  opacity: 0.05; /* Increased opacity */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -63,12 +73,12 @@
 
 @keyframes float {
   0%, 100% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(1);
   }
   33% {
-    transform: translate(30px, -30px);
+    transform: translate(40px, -40px) scale(1.1); /* Increased movement */
   }
   66% {
-    transform: translate(-20px, 20px);
+    transform: translate(-30px, 30px) scale(0.9); /* Added scale variation */
   }
 }

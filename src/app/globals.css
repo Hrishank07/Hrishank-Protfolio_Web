@@ -4,7 +4,7 @@
 
 :root {
   /* Light Mode Colors */
-  --primary: #6366f1;
+  --primary: #ec5d5d;
   --primary-light: #818cf8;
   --primary-dark: #4f46e5;
   --accent: #14b8a6;
@@ -24,8 +24,8 @@
 
 [data-theme='dark'] {
   /* Dark Mode Colors */
-  --primary: #6366f1;
-  --primary-light: #818cf8;
+  --primary: #b7ee9d;
+  --primary-light: #ccd1f2;
   --primary-dark: #4f46e5;
   --accent: #14b8a6;
   --accent-glow: #5eead4;

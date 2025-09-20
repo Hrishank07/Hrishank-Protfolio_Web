@@ -1,15 +1,18 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  publish = "out"
 
 [build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+  NODE_VERSION = "18"
   NEXT_PRIVATE_TARGET = "server"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
+# Configure the a11y plugin with longer timeout
+[[plugins]]
+  package = "netlify-plugin-a11y"
+  [plugins.inputs]
+    resultMode = "warn"
+    checkPaths = ['/']
+    timeout = 60000
+
+# Remove the redirects section that's causing conflicts
