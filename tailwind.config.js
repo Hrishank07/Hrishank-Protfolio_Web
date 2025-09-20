@@ -5,24 +5,18 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#B1DD8C',
-        dark: {
-          bg: '#0F0F0F',
-          card: '#1A1A1A',
-          hover: '#2A2A2A'
-        }
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        primary: '#6366f1',
+        'primary-light': '#818cf8',
+        'primary-dark': '#4f46e5',
+        accent: '#14b8a6',
+        'bg-primary': '#0a0a0a',
+        'bg-secondary': '#111111',
+        'bg-tertiary': '#1a1a1a',
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-} 
+  plugins: [],
+}

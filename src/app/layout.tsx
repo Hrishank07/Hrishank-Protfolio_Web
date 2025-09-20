@@ -1,77 +1,43 @@
-import './globals.css';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Script from 'next/script';
-import type { Metadata } from 'next';
-import ClientThemeProvider from '../components/ClientThemeProvider';
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import Navbar from '../components/layout/Navbar'
+import CustomCursor from '../components/ui/CustomCursor'
+import ThemeToggle from '../components/ui/ThemeToggle'
+import ScrollProgress from '../components/ui/ScrollProgress'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Hrishank Portfolio',
-  description: 'Personal portfolio website of Hrishank',
-  manifest: '/manifest.json',
-  icons: {
-    icon: [
-      {
-        url: '/favicon.ico',
-        sizes: '64x64 32x32 24x24 16x16',
-        type: 'image/x-icon',
-      },
-      {
-        url: '/icon-192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        url: '/icon-512.png',
-        sizes: '512x512',
-        type: 'image/png',
-      },
-    ],
-    apple: [
-      {
-        url: '/apple-touch-icon.png',
-        sizes: '180x180',
-        type: 'image/png',
-      },
-    ],
+  title: 'Hrishank Chhatbar - Software Engineer',
+  description: 'Software Engineer & Cloud Architect specializing in scalable infrastructure and backend services.',
+  keywords: 'software engineer, cloud architect, AWS, full stack developer',
+  openGraph: {
+    title: 'Hrishank Chhatbar - Software Engineer',
+    description: 'Building scalable infrastructure and elegant solutions',
+    type: 'website',
   },
-  verification: {
-    google: '0KSBnChCi9dBPjm7kXBCBPQkXFRsK0liVofcTi_XNr8',
-  },
-};
+  viewport: 'width=device-width, initial-scale=1',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-          `}
-        </Script>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
       </head>
-      <body className="font-inter antialiased" suppressHydrationWarning>
-        <ClientThemeProvider>
-          <Navbar />
-          <main className="pt-16">{children}</main>
-          <Footer />
-        </ClientThemeProvider>
+      <body className={inter.className}>
+        <ScrollProgress />
+        <CustomCursor />
+        <ThemeToggle />
+        <Navbar />
+        {children}
       </body>
     </html>
-  );
+  )
 }

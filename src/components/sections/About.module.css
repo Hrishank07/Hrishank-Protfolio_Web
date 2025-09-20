@@ -1,0 +1,46 @@
+.about {
+  padding: 5rem 2rem;
+  background: var(--bg-secondary);
+}
+
+.sectionContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.aboutText {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.skillsSimple {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.skillTag {
+  padding: 0.5rem 1.5rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-light);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.3s ease;
+}
+
+.skillTag:hover {
+  background: rgba(99, 102, 241, 0.2);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,42 @@
+.contact {
+  padding: 5rem 2rem;
+  background: var(--bg-secondary);
+}
+
+.contactContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.contactText {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contactLinks {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.contactLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.contactLink:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
