@@ -3,7 +3,7 @@ import { projects } from '../../data/projects'
 import styles from './Projects.module.css'
 
 export default function Projects() {
-  return ( s
+  return (
     <section className={styles.projects} id="projects">
       <div className={styles.projectsContainer}>
         <h2 className={styles.sectionTitle}>Featured Projects</h2>
