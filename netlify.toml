@@ -11,3 +11,8 @@
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
+    failWithIssues = false
+    ignoreDirectories = []
+    ignoreElements = ""
+    ignoreGuidelines = []
+    wcagLevel = "WCAG2AA"
