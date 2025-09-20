@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Required for Netlify static deployment
+  output: 'export',
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false, // Disabled to prevent critters issues
   },
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
     domains: ['localhost'],
     formats: ['image/avif', 'image/webp'],
   },
@@ -18,30 +18,10 @@ const nextConfig = {
   compress: true,
   // Optimize fonts
   optimizeFonts: true,
-  // Security headers
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-    ]
-  },
   // Clean up the public folder
   cleanDistDir: true,
+  // Add trailing slashes
+  trailingSlash: true,
 }
 
 module.exports = nextConfig
