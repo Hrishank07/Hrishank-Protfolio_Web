@@ -5,12 +5,45 @@
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "18"
+  NODE_OPTIONS = "--max-old-space-size=4096"
 
+# Redirect rules for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Accessibility plugin
 [[plugins]]
   package = "netlify-plugin-a11y"
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
-    ignoreDirectories = ['/admin']        # Optional, directories you want to skip
-    debugMode = false                      # Optional
+    ignoreDirectories = ['/admin']
+    debugMode = false
     testMode = "warn"  

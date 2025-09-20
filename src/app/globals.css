@@ -84,6 +84,49 @@ html {
   background: var(--primary-light);
 }
 
+/* Performance Optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  [data-theme='dark'] {
+    --border-color: rgba(255, 255, 255, 0.3);
+    --shadow-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
 /* Responsive Typography */
 @media (max-width: 768px) {
   :root {
@@ -94,5 +137,26 @@ html {
 @media (max-width: 480px) {
   :root {
     font-size: 13px;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  .navbar,
+  .scrollIndicator,
+  .carouselButton {
+    display: none !important;
   }
 }

@@ -1,13 +1,32 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProjectCard from '../ui/ProjectCard'
 import { projects } from '../../data/projects'
 import styles from './Projects.module.css'
 
 export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const projectsPerView = 3
+  const [projectsPerView, setProjectsPerView] = useState(3)
+
+  useEffect(() => {
+    const updateProjectsPerView = () => {
+      if (window.innerWidth <= 480) {
+        setProjectsPerView(1)
+      } else if (window.innerWidth <= 768) {
+        setProjectsPerView(1)
+      } else if (window.innerWidth <= 1024) {
+        setProjectsPerView(2)
+      } else {
+        setProjectsPerView(3)
+      }
+    }
+
+    updateProjectsPerView()
+    window.addEventListener('resize', updateProjectsPerView)
+    return () => window.removeEventListener('resize', updateProjectsPerView)
+  }, [])
+
   const maxIndex = Math.max(0, Math.ceil(projects.length / projectsPerView) - 1)
 
   const nextSlide = () => {

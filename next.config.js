@@ -1,18 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // Change from 'standalone' to 'export'
+  output: 'export',
   reactStrictMode: true,
   swcMinify: true,
+  trailingSlash: true,
   images: {
     unoptimized: true,
     domains: ['localhost'],
   },
-  // Remove other settings that might conflict
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  // Optimize bundle size
+  experimental: {
+    optimizeCss: true,
+  },
+  // Compress static files
+  compress: true,
+  // Generate sitemap
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
   }
 }
 

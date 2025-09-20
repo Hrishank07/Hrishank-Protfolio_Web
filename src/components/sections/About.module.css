@@ -110,14 +110,94 @@
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
+@media (max-width: 1024px) {
+  .about {
+    padding: 4rem 2rem;
+  }
+  
+  .aboutContent {
+    gap: 3rem;
+  }
+  
+  .photoWrapper {
+    width: 220px;
+    height: 220px;
+  }
+}
+
 @media (max-width: 768px) {
+  .about {
+    padding: 3rem 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
   .aboutContent {
     grid-template-columns: 1fr;
     gap: 2rem;
+    text-align: center;
   }
   
   .photoWrapper {
     width: 200px;
     height: 200px;
+    margin: 0 auto;
+  }
+  
+  .introTitle {
+    font-size: 1.25rem;
+  }
+  
+  .aboutText {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .skillsTitle {
+    font-size: 1.1rem;
+  }
+  
+  .skillsGrid {
+    justify-content: center;
+  }
+  
+  .skillTag {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 2rem 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .photoWrapper {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .introTitle {
+    font-size: 1.1rem;
+  }
+  
+  .aboutText {
+    font-size: 0.95rem;
+  }
+  
+  .skillsGrid {
+    gap: 0.5rem;
+  }
+  
+  .skillTag {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
   }
 }
