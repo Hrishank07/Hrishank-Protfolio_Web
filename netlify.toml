@@ -5,14 +5,10 @@
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "18"
-  NEXT_PRIVATE_TARGET = "server"
 
-# Configure the a11y plugin with longer timeout
 [[plugins]]
   package = "netlify-plugin-a11y"
   [plugins.inputs]
     resultMode = "warn"
     checkPaths = ['/']
     timeout = 60000
-
-# Remove the redirects section that's causing conflicts
