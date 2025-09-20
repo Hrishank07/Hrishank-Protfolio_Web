@@ -2,17 +2,23 @@
 
 import { useEffect, useState } from 'react'
 import AnimatedBackground from '../animations/AnimatedBackground'
-import ParticleField from '../animations/ParticleField'
 import styles from './Hero.module.css'
 
-const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver', 'Full Stack Developer']
+const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver']
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false)
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
     const currentRole = roles[roleIndex]
     const timeout = setTimeout(() => {
       if (!isDeleting) {
@@ -32,50 +38,55 @@ export default function Hero() {
     }, isDeleting ? 50 : 100)
 
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, roleIndex])
+  }, [displayText, isDeleting, roleIndex, mounted])
 
   return (
     <section className={styles.hero} id="home">
       <AnimatedBackground />
-      <ParticleField />
       <div className={styles.heroContent}>
         <p className={styles.greeting}>Hi, I'm</p>
         <h1 className={styles.heroTitle}>
           <span className={styles.name}>Hrishank Chhatbar</span>
         </h1>
         <p className={styles.heroTagline}>
-          <span>{displayText}</span>
+          <span>{displayText || 'Software Engineer'}</span>
           <span className={styles.cursor}>|</span>
         </p>
-        <p className={styles.heroDescription}>
-          I build scalable infrastructure and craft elegant solutions to complex problems. 
-          Currently pursuing my Master's at USC while exploring the intersection of cloud computing and AI.
-        </p>
-        <div className={styles.heroButtons}>
-          <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`}>
-            <span>View My Work</span>
-            <span className={styles.btnIcon}>→</span>
-          </a>
-          <a href="#contact" className={`${styles.btn} ${styles.btnSecondary}`}>
-            <span>Get in Touch</span>
-            <span className={styles.btnIcon}>✉</span>
-          </a>
+        
+        <div className={styles.heroInfo}>
+          <div className={styles.infoCard}>
+            <span className={styles.infoIcon}>🎓</span>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>Education</span>
+              <span className={styles.infoValue}>USC Graduate Student</span>
+            </div>
+          </div>
+          <div className={styles.infoCard}>
+            <span className={styles.infoIcon}>📊</span>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>GPA</span>
+              <span className={styles.infoValue}>3.9/4.0</span>
+            </div>
+          </div>
+          <div className={styles.infoCard}>
+            <span className={styles.infoIcon}>🚀</span>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>Recent</span>
+              <span className={styles.infoValue}>AWS SDE Intern</span>
+            </div>
+          </div>
         </div>
-        <div className={styles.heroStats}>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>35%</span>
-            <span className={styles.statLabel}>Reduced Latency</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>1M+</span>
-            <span className={styles.statLabel}>Users Served</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>3.9</span>
-            <span className={styles.statLabel}>GPA</span>
-          </div>
+        
+        <div className={styles.heroButtons}>
+          <a href="#about" className={`${styles.btn} ${styles.btnPrimary}`}>
+            <span>About Me</span>
+          </a>
+          <a href="#projects" className={`${styles.btn} ${styles.btnSecondary}`}>
+            <span>View Projects</span>
+          </a>
         </div>
       </div>
+      
       <div className={styles.scrollIndicator}>
         <div className={styles.mouse}>
           <div className={styles.wheel}></div>

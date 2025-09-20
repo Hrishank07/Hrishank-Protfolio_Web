@@ -3,44 +3,121 @@
   background: var(--bg-secondary);
 }
 
-.sectionContainer {
-  max-width: 800px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .sectionTitle {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
   color: var(--text-primary);
+  font-weight: 800;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.photoSection {
+  display: flex;
+  justify-content: center;
+}
+
+.photoWrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  border: 3px solid var(--border-color);
+  background: var(--bg-tertiary);
+}
+
+.photoPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.introTitle {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .aboutText {
   color: var(--text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.skillsSimple {
+.skillsSection {
+  margin-top: 1rem;
+}
+
+.skillsTitle {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.skillsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
+  gap: 0.75rem;
 }
 
 .skillTag {
-  padding: 0.5rem 1.5rem;
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--primary-light);
-  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  border-radius: 8px;
   font-size: 0.9rem;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .skillTag:hover {
-  background: rgba(99, 102, 241, 0.2);
+  background: var(--primary);
+  color: white;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+@media (max-width: 768px) {
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .photoWrapper {
+    width: 200px;
+    height: 200px;
+  }
 }

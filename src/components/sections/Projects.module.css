@@ -1,5 +1,7 @@
 .projects {
   padding: 5rem 2rem;
+  background: var(--bg-primary);
+  overflow: hidden;
 }
 
 .projectsContainer {
@@ -12,10 +14,126 @@
   text-align: center;
   margin-bottom: 3rem;
   color: var(--text-primary);
+  font-weight: 800;
+}
+
+.carouselContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.carouselWrapper {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(6, minmax(320px, 1fr));
   gap: 2rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carouselButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.carouselButton:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: scale(1.1);
+}
+
+.carouselButton:active {
+  transform: scale(0.95);
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: var(--text-secondary);
+}
+
+.activeDot {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--primary);
+}
+
+/* Tablet (iPad) Styles */
+@media (max-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(6, minmax(280px, 1fr));
+  }
+  
+  .carouselButton {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .projects {
+    padding: 3rem 1rem;
+  }
+  
+  .carouselContainer {
+    gap: 1rem;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: repeat(6, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectsGrid {
+    grid-template-columns: repeat(6, 90vw);
+  }
+  
+  .carouselButton {
+    width: 35px;
+    height: 35px;
+  }
 }

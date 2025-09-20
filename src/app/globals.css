@@ -10,15 +10,16 @@
   --accent: #14b8a6;
   --accent-glow: #5eead4;
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-tertiary: #f3f4f6;
-  --bg-card: rgba(255, 255, 255, 0.8);
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-tertiary: #9ca3af;
-  --border-color: rgba(0, 0, 0, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --gradient-opacity: 0.05;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f5;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --text-primary: #1a1d23;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --gradient-opacity: 0.03;
+  --navbar-bg: rgba(255, 255, 255, 0.9);
 }
 
 [data-theme='dark'] {
@@ -31,13 +32,14 @@
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-tertiary: #1a1a1a;
-  --bg-card: rgba(18, 18, 18, 0.8);
+  --bg-card: rgba(18, 18, 18, 0.9);
   --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
   --text-tertiary: #71717a;
   --border-color: rgba(255, 255, 255, 0.08);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --gradient-opacity: 0.15;
+  --gradient-opacity: 0.08;
+  --navbar-bg: rgba(10, 10, 10, 0.9);
 }
 
 * {
@@ -51,25 +53,22 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   transition: background 0.3s ease, color 0.3s ease;
-  cursor: none;
-}
-
-/* Performance optimizations */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -78,35 +77,22 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
 }
 
-/* Loading skeleton */
-@keyframes shimmer {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
+/* Responsive Typography */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
   }
 }
 
-.skeleton {
-  animation: shimmer 2s linear infinite;
-  background: linear-gradient(
-    to right,
-    var(--bg-secondary) 4%,
-    var(--bg-tertiary) 25%,
-    var(--bg-secondary) 36%
-  );
-  background-size: 1000px 100%;
-}
-
-/* Smooth transitions for theme switching */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
 }

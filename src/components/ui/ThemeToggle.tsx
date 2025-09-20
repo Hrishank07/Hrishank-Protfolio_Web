@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react'
 import styles from './ThemeToggle.module.css'
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
-  const [mounted, setMounted] = useState(false)
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null)
 
   useEffect(() => {
-    setMounted(true)
+    // Only run on client
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
@@ -17,13 +16,15 @@ export default function ThemeToggle() {
   }, [])
 
   const toggleTheme = () => {
+    if (!theme) return
     const newTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
     document.documentElement.setAttribute('data-theme', newTheme)
   }
 
-  if (!mounted) {
+  // Return skeleton during SSR
+  if (!theme) {
     return <div className={styles.skeleton} />
   }
 

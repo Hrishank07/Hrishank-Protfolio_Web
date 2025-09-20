@@ -1,46 +1,65 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './CustomCursor.module.css'
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-
+  const cursorRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  
   useEffect(() => {
-    const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
+    setMounted(true)
+    
+    // Check if mobile or touch device
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768 || 
+                    'ontouchstart' in window ||
+                    navigator.maxTouchPoints > 0
+      setIsMobile(mobile)
     }
-
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
-    document.addEventListener('mousemove', updatePosition)
-
-    const interactiveElements = document.querySelectorAll('a, button, .project-card')
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter)
-      el.addEventListener('mouseleave', handleMouseLeave)
-    })
-
-    return () => {
-      document.removeEventListener('mousemove', updatePosition)
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeave)
-      })
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    if (!isMobile) {
+      let animationFrameId: number
+      
+      const updateCursor = (e: MouseEvent) => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId)
+        }
+        
+        animationFrameId = requestAnimationFrame(() => {
+          if (cursorRef.current) {
+            cursorRef.current.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`
+          }
+        })
+      }
+      
+      document.addEventListener('mousemove', updateCursor, { passive: true })
+      
+      return () => {
+        document.removeEventListener('mousemove', updateCursor)
+        window.removeEventListener('resize', checkMobile)
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId)
+        }
+      }
     }
-  }, [])
-
-  // Hide on mobile
-  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [isMobile])
+  
+  if (!mounted || isMobile) {
     return null
   }
-
+  
   return (
     <div 
-      className={`${styles.cursor} ${isHovering ? styles.hover : ''}`}
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      ref={cursorRef}
+      className={styles.cursor}
+      style={{ position: 'fixed', pointerEvents: 'none', zIndex: 10000 }}
     />
   )
 }
