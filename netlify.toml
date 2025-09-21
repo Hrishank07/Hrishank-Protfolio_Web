@@ -40,7 +40,7 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Remove accessibility plugin to prevent build timeouts
-# Accessibility testing can be done locally or with other tools
-# [[plugins]]
-#   package = "netlify-plugin-a11y"  
+# Override UI plugins - only keep essential Next.js plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"  
+  
