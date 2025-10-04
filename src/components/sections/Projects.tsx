@@ -94,76 +94,88 @@ export default function Projects() {
       id="projects"
     >
       <div className={styles.projectsContainer}>
-        <h2 className={styles.sectionTitle} id={headingId}>Featured Projects</h2>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle} id={headingId}>Featured Projects</h2>
+            <p className={styles.sectionSubtitle}>
+              Selected builds that pair scalable systems with purposeful experiences.
+            </p>
+          </div>
+          <div className={styles.sectionControls}>
+            <button
+              className={styles.navPill}
+              onClick={prevSlide}
+              aria-label="Previous projects"
+              onFocus={() => setIsPaused(true)}
+              onBlur={(event) => {
+                if (!(event.currentTarget.parentElement?.contains(event.relatedTarget as Node))) {
+                  setIsPaused(false)
+                }
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              className={styles.navPill}
+              onClick={nextSlide}
+              aria-label="Next projects"
+              onFocus={() => setIsPaused(true)}
+              onBlur={(event) => {
+                if (!(event.currentTarget.parentElement?.contains(event.relatedTarget as Node))) {
+                  setIsPaused(false)
+                }
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-        <p className={styles.visuallyHidden} id={statusId} aria-live="polite">
+        <p className={styles.carouselStatus} id={statusId} aria-live="polite">
           {sliderStatus}
         </p>
 
-        <div className={styles.carouselContainer}>
-          <button
-            className={`${styles.carouselButton} ${styles.prevButton}`}
-            onClick={prevSlide}
-            aria-label="Previous projects"
-            onFocus={() => setIsPaused(true)}
-            onBlur={(event) => {
-              if (!(event.currentTarget.parentElement?.contains(event.relatedTarget as Node))) {
-                setIsPaused(false)
-              }
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
+        <div
+          className={styles.carouselWrapper}
+          tabIndex={0}
+          role="region"
+          aria-roledescription="carousel"
+          aria-labelledby={headingId}
+          aria-describedby={statusId}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
           <div
-            className={styles.carouselWrapper}
-            tabIndex={0}
-            role="region"
-            aria-roledescription="carousel"
-            aria-labelledby={headingId}
-            aria-describedby={statusId}
-            onKeyDown={handleKeyDown}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-          >
-            <div
-              className={styles.projectsGrid}
-              style={{
-                transform: `translate3d(-${currentIndex * 100}%, 0, 0)`,
-                '--cards-per-view': `${projectsPerView}`,
-              }}
-            >
-              {projects.map((project) => (
-                <div key={project.id} className={styles.projectSlide}>
-                  <ProjectCard project={project} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button
-            className={`${styles.carouselButton} ${styles.nextButton}`}
-            onClick={nextSlide}
-            aria-label="Next projects"
-            onFocus={() => setIsPaused(true)}
-            onBlur={(event) => {
-              if (!(event.currentTarget.parentElement?.contains(event.relatedTarget as Node))) {
-                setIsPaused(false)
-              }
+            className={styles.projectsGrid}
+            style={{
+              transform: `translate3d(-${currentIndex * 100}%, 0, 0)`,
+              '--cards-per-view': `${projectsPerView}`,
             }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+            {projects.map((project) => (
+              <div key={project.id} className={styles.projectSlide}>
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
         </div>
-        
+
+        <div className={styles.carouselProgress} aria-hidden="true">
+          <span
+            className={styles.progressIndicator}
+            style={{ width: `${((currentIndex + 1) / (maxIndex + 1)) * 100}%` }}
+          />
+        </div>
+
         <div className={styles.carouselDots}>
           {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <button

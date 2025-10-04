@@ -33,26 +33,39 @@
   bottom: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0.45rem 1.1rem;
+  padding: 0.4rem 0.95rem;
   border-radius: 999px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: color-mix(in srgb, var(--bg-card) 70%, transparent);
+  background: color-mix(in srgb, var(--bg-card) 75%, transparent);
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+}
+
+.statusIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.statusIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .statusDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
+  display: none;
+}
+
+.statusText {
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 520px) {

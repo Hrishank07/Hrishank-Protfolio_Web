@@ -268,8 +268,12 @@ export default function HeroGlobe() {
       <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
       <div className={styles.globeOverlay} aria-hidden="true" />
       <span className={styles.statusTag}>
-        <span className={styles.statusDot} aria-hidden="true" />
-        Move to explore
+        <span className={styles.statusIcon} aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M10 2v16M2 10h16" strokeLinecap="round" />
+          </svg>
+        </span>
+        <span className={styles.statusText}>Move to explore</span>
       </span>
     </div>
   )

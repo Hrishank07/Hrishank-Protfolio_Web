@@ -1,7 +1,6 @@
 .projects {
   padding: clamp(4.25rem, 12vh, 5.75rem) clamp(1.25rem, 5.5vw, 3rem);
   background: var(--bg-primary);
-  overflow: hidden;
   transition: opacity 0.7s ease, transform 0.7s ease;
   will-change: opacity, transform;
   scroll-margin-top: clamp(5rem, 12vh, 6.5rem);
@@ -19,134 +18,72 @@
 }
 
 .projectsContainer {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 5vh, 2.5rem);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(1.5rem, 5vw, 2.5rem);
+  flex-wrap: wrap;
 }
 
 .sectionTitle {
   font-size: clamp(2.1rem, 3.5vw, 2.6rem);
-  text-align: center;
-  margin-bottom: clamp(2.5rem, 6vh, 3.5rem);
   color: var(--text-primary);
   font-weight: 800;
+  margin-bottom: 0.35rem;
 }
 
-.carouselContainer {
-  position: relative;
-  display: flex;
+.sectionSubtitle {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  max-width: 46ch;
+  line-height: 1.65;
+}
+
+.sectionControls {
+  display: inline-flex;
+  gap: 0.65rem;
   align-items: center;
-  gap: clamp(1.5rem, 4vw, 2.75rem);
+  background: color-mix(in srgb, var(--bg-card) 50%, transparent);
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
 }
 
-.carouselWrapper {
-  position: relative;
-  flex: 1;
-  overflow: hidden;
-  border-radius: 24px;
-  background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), rgba(20, 184, 166, 0.05));
-  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.15);
-  outline: none;
-  transition: box-shadow 0.3s ease;
-}
-
-.carouselWrapper:focus-visible {
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35), 0 25px 70px rgba(15, 23, 42, 0.18);
-}
-
-.projectsGrid {
-  --cards-per-view: 3;
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-  width: 100%;
-  will-change: transform;
-  transform-style: preserve-3d;
-}
-
-.projectSlide {
-  flex: 0 0 calc(100% / var(--cards-per-view));
-  min-width: calc(100% / var(--cards-per-view));
-  padding: clamp(1.1rem, 3vw, 1.8rem) clamp(0.75rem, 2vw, 1.5rem);
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
-
-.carouselWrapper::before,
-.carouselWrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(28px, 8vw, 90px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.carouselWrapper::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 100%);
-}
-
-.carouselWrapper::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--bg-primary) 0%, transparent 100%);
-}
-
-.carouselButton {
-  width: clamp(42px, 4vw, 54px);
-  height: clamp(42px, 4vw, 54px);
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-  flex-shrink: 0;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
-}
-
-.carouselButton:hover {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
-  transform: translateY(-3px);
-}
-
-.carouselButton:active {
-  transform: scale(0.95);
-}
-
-.carouselDots {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: clamp(1.75rem, 5vh, 2.5rem);
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border-color);
+.navPill {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
   border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-.dot:hover {
-  background: var(--text-secondary);
+.navPill:hover {
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
-.activeDot {
-  width: 24px;
-  border-radius: 4px;
-  background: var(--primary);
+.navPill:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
-.visuallyHidden {
+.carouselStatus {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -157,45 +94,92 @@
   border: 0;
 }
 
+.carouselWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(123, 139, 255, 0.08), rgba(83, 229, 204, 0.06));
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.18);
+  outline: none;
+}
+
+.carouselWrapper:focus-visible {
+  box-shadow: 0 0 0 3px rgba(123, 139, 255, 0.3), 0 28px 70px rgba(15, 23, 42, 0.2);
+}
+
+.projectsGrid {
+  --cards-per-view: 3;
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  width: 100%;
+  will-change: transform;
+}
+
+.projectSlide {
+  flex: 0 0 calc(100% / var(--cards-per-view));
+  min-width: calc(100% / var(--cards-per-view));
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  display: flex;
+  justify-content: center;
+}
+
+.carouselProgress {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.25);
+  overflow: hidden;
+}
+
+.progressIndicator {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transition: width 0.4s ease;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(148, 163, 184, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dot:hover {
+  background: rgba(123, 139, 255, 0.55);
+  transform: scale(1.2);
+}
+
+.activeDot {
+  width: 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
 @media (max-width: 1180px) {
   .projectsGrid {
     --cards-per-view: 2;
   }
 }
 
-@media (max-width: 1024px) {
-  .projects {
-    padding: clamp(3.5rem, 10vh, 4.5rem) clamp(1.25rem, 6vw, 2.5rem);
-  }
-
-  .projectsGrid {
-    --cards-per-view: 2;
-  }
-
-  .carouselButton {
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
-  }
-}
-
 @media (max-width: 900px) {
-  .carouselContainer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.75rem;
+  .sectionHeader {
+    align-items: flex-start;
   }
 
-  .carouselButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .prevButton {
-    left: -12px;
-  }
-
-  .nextButton {
-    right: -12px;
+  .sectionControls {
+    order: 3;
   }
 }
 
@@ -205,18 +189,12 @@
   }
 
   .projectSlide {
-    padding: 1.25rem 0.75rem;
+    padding: 1.25rem 0.85rem;
   }
 
-  .carouselButton {
-    position: static;
-    width: 42px;
-    height: 42px;
-    transform: none;
-  }
-
-  .carouselContainer {
-    gap: 1.25rem;
+  .sectionControls {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -225,29 +203,10 @@
     padding: clamp(2.75rem, 16vh, 3.5rem) 1rem;
   }
 
-  .carouselButton {
-    width: 38px;
-    height: 38px;
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .sectionTitle {
-    font-size: clamp(1.85rem, 8vw, 2rem);
-  }
-}
-
-@media (max-height: 720px) and (min-width: 900px) {
-  .projects {
-    padding-block: clamp(3.25rem, 14vh, 4.5rem);
-  }
-}
-
-.projectSlide:focus-within,
-.projectSlide:focus-visible {
-  outline: none;
-}
-
-.carouselButton:focus-visible {
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -259,7 +218,7 @@
     transition: none;
   }
 
-  .carouselButton {
+  .progressIndicator {
     transition: none;
   }
 }
