@@ -4,42 +4,50 @@
 
 :root {
   /* Light Mode Colors */
-  --primary: #6366f1;
-  --primary-light: #a5b4fc;
-  --primary-dark: #4338ca;
-  --accent: #22d3ee;
-  --accent-glow: #67e8f9;
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
+  --primary: #6b67f3;
+  --primary-light: #b9b7ff;
+  --primary-dark: #4a46c6;
+  --accent: #31d0c6;
+  --accent-glow: #7af2e8;
+  --bg-primary: #f5f3ef;
+  --bg-secondary: #ebe7df;
+  --bg-tertiary: #ded7cb;
   --bg-card: rgba(255, 255, 255, 0.85);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --border-color: rgba(15, 23, 42, 0.08);
-  --shadow-color: rgba(15, 23, 42, 0.12);
-  --gradient-opacity: 0.04;
-  --navbar-bg: rgba(248, 250, 252, 0.85);
+  --text-primary: #1c1d26;
+  --text-secondary: #575968;
+  --text-tertiary: #7b7d8b;
+  --border-color: rgba(28, 29, 36, 0.08);
+  --shadow-color: rgba(71, 64, 89, 0.12);
+  --gradient-opacity: 0.05;
+  --navbar-bg: rgba(245, 243, 239, 0.82);
+  --action-ghost-bg: rgba(255, 255, 255, 0.82);
+  --action-ghost-fg: #1f2937;
+  --action-ghost-border: rgba(99, 102, 241, 0.2);
+  --action-ghost-shadow: rgba(148, 163, 184, 0.18);
 }
 
 [data-theme='dark'] {
   /* Dark Mode Colors */
-  --primary: #60a5fa;
-  --primary-light: #93c5fd;
-  --primary-dark: #1d4ed8;
-  --accent: #34d399;
-  --accent-glow: #6ee7b7;
-  --bg-primary: #070b16;
-  --bg-secondary: #0b1224;
-  --bg-tertiary: #101a32;
-  --bg-card: rgba(15, 23, 42, 0.85);
-  --text-primary: #e2e8f0;
-  --text-secondary: #b6c3dc;
-  --text-tertiary: #7a8da8;
-  --border-color: rgba(100, 116, 139, 0.25);
-  --shadow-color: rgba(2, 6, 23, 0.6);
-  --gradient-opacity: 0.09;
-  --navbar-bg: rgba(7, 11, 22, 0.82);
+  --primary: #7c8bff;
+  --primary-light: #a2b1ff;
+  --primary-dark: #4c53d2;
+  --accent: #53e5cc;
+  --accent-glow: #7ef8db;
+  --bg-primary: #0b0d12;
+  --bg-secondary: #111520;
+  --bg-tertiary: #171c2a;
+  --bg-card: rgba(17, 21, 32, 0.88);
+  --text-primary: #e7ecf5;
+  --text-secondary: #b2b9cc;
+  --text-tertiary: #7f8ba1;
+  --border-color: rgba(126, 139, 163, 0.24);
+  --shadow-color: rgba(2, 6, 23, 0.55);
+  --gradient-opacity: 0.1;
+  --navbar-bg: rgba(11, 13, 18, 0.86);
+  --action-ghost-bg: rgba(17, 21, 32, 0.92);
+  --action-ghost-fg: #e7ecf5;
+  --action-ghost-border: rgba(126, 139, 255, 0.32);
+  --action-ghost-shadow: rgba(8, 12, 24, 0.5);
 }
 
 * {

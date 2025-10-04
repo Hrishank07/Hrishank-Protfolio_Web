@@ -21,6 +21,8 @@ export default function HeroGlobe() {
     let driftVelocity = 0.002
     let frame = 0
     let reduceMotion = false
+    const pointerState = { x: 0, y: 0, active: false }
+    const pulsesRef: Array<{ start: number; orbitAngle: number }> = []
 
     const color = {
       primary: '#6366f1',
@@ -141,6 +143,33 @@ export default function HeroGlobe() {
         context.restore()
       }
 
+      const now = performance.now()
+
+      // Draw interaction pulses
+      context.globalAlpha = 1
+      for (let i = pulsesRef.length - 1; i >= 0; i -= 1) {
+        const pulse = pulsesRef[i]
+        const age = now - pulse.start
+        const duration = 1400
+        if (age > duration) {
+          pulsesRef.splice(i, 1)
+          continue
+        }
+
+        const t = age / duration
+        const eased = 1 - Math.pow(1 - t, 3)
+        const ringRadius = radius * (0.45 + eased * 0.4)
+        const alpha = (1 - eased) * 0.5
+        context.save()
+        context.rotate(pulse.orbitAngle)
+        context.strokeStyle = `${color.accent}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+        context.lineWidth = Math.max(1, radius * 0.01 * (1 - eased))
+        context.beginPath()
+        context.ellipse(0, 0, ringRadius, ringRadius * 0.35, 0, 0, Math.PI * 2)
+        context.stroke()
+        context.restore()
+      }
+
       context.globalAlpha = 1
       const orbitAngle = rotation * 2 + Math.sin(frame * 0.01) * 0.1
       const orbitX = radius * Math.cos(orbitAngle)
@@ -165,6 +194,26 @@ export default function HeroGlobe() {
       context.lineWidth = 2
       context.stroke()
 
+      if (pointerState.active) {
+        const pointerAngle = Math.atan2(pointerState.y - height / 2, pointerState.x - width / 2)
+        context.save()
+        context.rotate(pointerAngle)
+        context.strokeStyle = `${color.primary}99`
+        context.lineWidth = 1.5
+        context.beginPath()
+        context.ellipse(0, 0, radius * 0.95, radius * 0.28, 0, 0, Math.PI * 2)
+        context.stroke()
+        context.restore()
+
+        context.beginPath()
+        const pointerRadius = radius * 0.9
+        const px = pointerRadius * Math.cos(pointerAngle)
+        const py = pointerRadius * 0.32 * Math.sin(pointerAngle)
+        context.fillStyle = `${color.primary}cc`
+        context.arc(px, py, 4, 0, Math.PI * 2)
+        context.fill()
+      }
+
       context.restore()
 
       animationRef.current = requestAnimationFrame(draw)
@@ -182,12 +231,17 @@ export default function HeroGlobe() {
     const handlePointerMove = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect()
       const relativeX = (event.clientX - rect.left) / rect.width - 0.5
+      pointerState.x = event.clientX
+      pointerState.y = event.clientY
+      pointerState.active = true
       targetRotation = relativeX * Math.PI * 0.8
       driftVelocity += relativeX * 0.0006
+      pulsesRef.push({ start: performance.now(), orbitAngle: rotation })
     }
 
     const handlePointerLeave = () => {
       targetRotation = 0
+      pointerState.active = false
     }
 
     canvas.addEventListener('pointermove', handlePointerMove)
@@ -215,7 +269,7 @@ export default function HeroGlobe() {
       <div className={styles.globeOverlay} aria-hidden="true" />
       <span className={styles.statusTag}>
         <span className={styles.statusDot} aria-hidden="true" />
-        Live canvas
+        Move to explore
       </span>
     </div>
   )
