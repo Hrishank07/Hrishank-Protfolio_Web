@@ -1,31 +1,99 @@
 .projectCard {
-  background: var(--bg-tertiary);
-  border-radius: 15px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  position: relative;
+  width: 100%;
+  padding: 2.25rem;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(99, 102, 241, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+              border-color 0.45s ease;
   cursor: pointer;
+  transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  overflow: hidden;
+  isolation: isolate;
+  backdrop-filter: blur(6px);
 }
 
-.projectCard:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+.projectCard::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(99, 102, 241, 0.25), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.projectCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.projectCard:hover,
+.projectCard:focus-visible {
+  transform: perspective(1200px) rotateX(var(--tilt-x, -2deg)) rotateY(var(--tilt-y, 2deg)) translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+}
+
+.projectCard:hover::before,
+.projectCard:focus-visible::before {
+  opacity: 1;
 }
 
 .projectIcon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(20, 184, 166, 0.25));
+  color: var(--primary);
 }
 
 .projectTitle {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .projectDescription {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.projectCard:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35), 0 30px 60px rgba(15, 23, 42, 0.25);
+}
+
+@media (hover: none) {
+  .projectCard {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectCard {
+    transition: none;
+    transform: none !important;
+  }
+
+  .projectCard::before {
+    opacity: 1;
+  }
 }

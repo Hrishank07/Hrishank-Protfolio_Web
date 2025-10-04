@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './About.module.css'
+import useRevealOnScroll from '../../hooks/useRevealOnScroll'
 
 const skills = [
   'Java', 'Python', 'JavaScript', 'TypeScript',
@@ -8,11 +11,18 @@ const skills = [
 ]
 
 export default function About() {
+  const sectionRef = useRevealOnScroll<HTMLElement>()
+
   return (
-    <section className={styles.about} id="about">
+    <section
+      ref={sectionRef}
+      className={styles.about}
+      data-reveal="pending"
+      id="about"
+    >
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>About Me</h2>
-        
+
         <div className={styles.aboutContent}>
           <div className={styles.photoSection}>
             <div className={styles.photoWrapper}>
@@ -20,13 +30,14 @@ export default function About() {
               {/* <div className={styles.photoPlaceholder}>
                 HC
               </div> */}
-              <Image 
-                src="/Profile_Pic.jpeg" 
+              <Image
+                src="/Profile_Pic.jpeg"
                 alt="Hrishank Chhatbar"
                 width={550}
                 height={550}
                 className={styles.photo}
-                priority  // Add priority for faster loading
+                sizes="(max-width: 768px) 220px, 300px"
+                priority
               />
             </div>
           </div>

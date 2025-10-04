@@ -1,14 +1,62 @@
+'use client'
+
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import styles from './Contact.module.css'
+import useRevealOnScroll from '../../hooks/useRevealOnScroll'
+
+const MESSAGE_LIMIT = 500
 
 export default function Contact() {
+  const sectionRef = useRevealOnScroll<HTMLElement>()
+  const [status, setStatus] = useState<'idle' | 'success'>('idle')
+  const [messageLength, setMessageLength] = useState(0)
+
+  useEffect(() => {
+    if (status === 'idle') {
+      return
+    }
+
+    const timeout = window.setTimeout(() => setStatus('idle'), 5000)
+    return () => window.clearTimeout(timeout)
+  }, [status])
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const name = (formData.get('name') ?? '').toString().trim()
+    const email = (formData.get('email') ?? '').toString().trim()
+    const message = (formData.get('message') ?? '').toString().trim()
+
+    const subject = name ? `Portfolio Contact: ${name}` : 'Portfolio Contact'
+    const mailto = `mailto:hchhatba@usc.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name || 'Anonymous'}\nEmail: ${email}\n\n${message}`)}`
+
+    const newWindow = window.open(mailto, '_blank')
+    if (!newWindow) {
+      window.location.href = mailto
+    }
+    setStatus('success')
+    setMessageLength(0)
+    event.currentTarget.reset()
+  }
+
+  const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessageLength(event.target.value.length)
+  }
+
   return (
-    <section className={styles.contact} id="contact">
+    <section
+      ref={sectionRef}
+      className={styles.contact}
+      data-reveal="pending"
+      id="contact"
+    >
       <div className={styles.contactContainer}>
         <h2 className={styles.sectionTitle}>Let's Connect</h2>
         <p className={styles.contactSubtitle}>
           Have a project in mind? Let's work together to build something amazing.
         </p>
-        
+
         <div className={styles.contactContent}>
           <div className={styles.contactInfo}>
             <h3 className={styles.contactHeading}>Get in Touch</h3>
@@ -32,32 +80,47 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          
+
           <div className={styles.contactForm}>
-            <form>
+            <form onSubmit={handleSubmit} noValidate>
               <div className={styles.formGroup}>
-                <input 
-                  type="text" 
-                  placeholder="Your Name" 
+                <input
+                  type="text"
+                  placeholder="Your Name"
                   className={styles.formInput}
+                  name="name"
                   required
                 />
               </div>
               <div className={styles.formGroup}>
-                <input 
-                  type="email" 
-                  placeholder="Your Email" 
+                <input
+                  type="email"
+                  placeholder="Your Email"
                   className={styles.formInput}
+                  name="email"
                   required
                 />
               </div>
               <div className={styles.formGroup}>
-                <textarea 
-                  placeholder="Your Message" 
+                <textarea
+                  placeholder="Your Message"
                   className={styles.formTextarea}
                   rows={4}
+                  name="message"
+                  maxLength={MESSAGE_LIMIT}
+                  onChange={handleMessageChange}
                   required
                 />
+              </div>
+              <div className={styles.formFooter}>
+                <span className={styles.charCount}>
+                  {messageLength}/{MESSAGE_LIMIT}
+                </span>
+                {status === 'success' && (
+                  <span className={styles.formStatus} role="status" aria-live="polite">
+                    Email draft opened — feel free to edit before sending! If nothing opens, email hchhatba@usc.edu.
+                  </span>
+                )}
               </div>
               <button type="submit" className={styles.submitButton}>
                 Send Message

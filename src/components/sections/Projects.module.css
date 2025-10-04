@@ -2,6 +2,19 @@
   padding: 5rem 2rem;
   background: var(--bg-primary);
   overflow: hidden;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.projects[data-reveal='pending'],
+.projects[data-reveal='hidden'] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.projects[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
 }
 
 .projectsContainer {
@@ -25,17 +38,57 @@
 }
 
 .carouselWrapper {
+  position: relative;
   flex: 1;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), rgba(20, 184, 166, 0.05));
+  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.15);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.carouselWrapper:focus-visible {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35), 0 25px 70px rgba(15, 23, 42, 0.18);
 }
 
 .projectsGrid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(320px, 1fr));
-  gap: 2rem;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --cards-per-view: 3;
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
   width: 100%;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.projectSlide {
+  flex: 0 0 calc(100% / var(--cards-per-view));
+  min-width: calc(100% / var(--cards-per-view));
+  padding: 1.5rem clamp(0.75rem, 2vw, 1.5rem);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.carouselWrapper::before,
+.carouselWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(32px, 8vw, 96px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carouselWrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 100%);
+}
+
+.carouselWrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-primary) 0%, transparent 100%);
 }
 
 .carouselButton {
@@ -91,12 +144,23 @@
   background: var(--primary);
 }
 
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 /* Tablet (iPad) Styles */
 @media (max-width: 1024px) {
   .projectsGrid {
-    grid-template-columns: repeat(6, minmax(280px, 1fr));
+    --cards-per-view: 2;
   }
-  
+
   .carouselButton {
     width: 45px;
     height: 45px;
@@ -108,21 +172,24 @@
   .projects {
     padding: 3rem 1rem;
   }
-  
+
   .carouselContainer {
     gap: 1rem;
   }
-  
+
   .projectsGrid {
-    grid-template-columns: repeat(6, minmax(260px, 1fr));
-    gap: 1rem;
+    --cards-per-view: 1;
   }
-  
+
+  .projectSlide {
+    padding: 1.25rem 0.75rem;
+  }
+
   .carouselButton {
     width: 40px;
     height: 40px;
   }
-  
+
   .sectionTitle {
     font-size: 2rem;
   }
@@ -130,11 +197,38 @@
 
 @media (max-width: 480px) {
   .projectsGrid {
-    grid-template-columns: repeat(6, 90vw);
+    --cards-per-view: 1;
   }
-  
+
+  .projectSlide {
+    padding: 1rem 0.5rem;
+  }
+
   .carouselButton {
     width: 35px;
     height: 35px;
+  }
+}
+
+.projectSlide:focus-within,
+.projectSlide:focus-visible {
+  outline: none;
+}
+
+.carouselButton:focus-visible {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects {
+    transform: none !important;
+  }
+
+  .projectsGrid {
+    transition: none;
+  }
+
+  .carouselButton {
+    transition: none;
   }
 }

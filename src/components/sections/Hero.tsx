@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import AnimatedBackground from '../animations/AnimatedBackground'
 import styles from './Hero.module.css'
+import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 
 const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver']
 
@@ -11,14 +12,29 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
-    
+    if (!mounted || !prefersReducedMotion) {
+      return
+    }
+
+    setDisplayText(roles[roleIndex])
+
+    const interval = window.setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length)
+    }, 3500)
+
+    return () => window.clearInterval(interval)
+  }, [mounted, prefersReducedMotion, roleIndex])
+
+  useEffect(() => {
+    if (!mounted || prefersReducedMotion) return
+
     const currentRole = roles[roleIndex]
     const timeout = setTimeout(() => {
       if (!isDeleting) {
@@ -38,7 +54,7 @@ export default function Hero() {
     }, isDeleting ? 50 : 100)
 
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, roleIndex, mounted])
+  }, [displayText, isDeleting, roleIndex, mounted, prefersReducedMotion])
 
   return (
     <section className={styles.hero} id="home">
