@@ -57,10 +57,15 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: clamp(4.75rem, 12vh, 6.5rem);
 }
 
 /* Prevent horizontal scroll on mobile */
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: clamp(4.25rem, 14vh, 5.5rem);
+  }
+
   html, body {
     overflow-x: hidden;
   }

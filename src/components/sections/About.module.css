@@ -1,8 +1,9 @@
 .about {
-  padding: 5rem 2rem;
+  padding: clamp(4.25rem, 12vh, 5.75rem) clamp(1.5rem, 6vw, 3rem);
   background: var(--bg-secondary);
   transition: opacity 0.7s ease, transform 0.7s ease;
   will-change: opacity, transform;
+  scroll-margin-top: clamp(5rem, 12vh, 6.5rem);
 }
 
 .about[data-reveal='pending'],
@@ -22,18 +23,18 @@
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
+  font-size: clamp(2.1rem, 3.5vw, 2.5rem);
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2.5rem, 6vh, 3.3rem);
   color: var(--text-primary);
   font-weight: 800;
 }
 
 .aboutContent {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 4rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2.5rem, 6vw, 4.25rem);
+  align-items: center;
 }
 
 .photoSection {
@@ -43,26 +44,14 @@
 
 .photoWrapper {
   position: relative;
-  width: 250px;
-  height: 250px;
-  border-radius: 20px;
+  width: clamp(220px, 28vw, 260px);
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 30px var(--shadow-color);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
   border: 3px solid var(--border-color);
   background: var(--bg-tertiary);
   animation: float 8s ease-in-out infinite;
-}
-
-.photoPlaceholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
 }
 
 .photo {
@@ -74,28 +63,28 @@
 .infoSection {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 
 .introTitle {
-  font-size: 1.5rem;
+  font-size: clamp(1.35rem, 2.8vw, 1.55rem);
   color: var(--primary);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .aboutText {
   color: var(--text-secondary);
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 2.3vw, 1.08rem);
   line-height: 1.7;
 }
 
 .skillsSection {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .skillsTitle {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2vw, 1.2rem);
   color: var(--text-primary);
   margin-bottom: 1rem;
   font-weight: 600;
@@ -111,17 +100,17 @@
   padding: 0.5rem 1rem;
   background: var(--bg-primary);
   color: var(--text-secondary);
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.9rem;
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .skillTag:hover {
   background: var(--primary);
-  color: white;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.2);
 }
 
 @keyframes float {
@@ -135,93 +124,78 @@
 
 @media (max-width: 1024px) {
   .about {
-    padding: 4rem 2rem;
+    padding: clamp(3.5rem, 10vh, 4.5rem) clamp(1.5rem, 6vw, 2.4rem);
   }
-  
+
   .aboutContent {
-    gap: 3rem;
+    gap: clamp(2rem, 6vh, 3rem);
   }
-  
+
   .photoWrapper {
-    width: 220px;
-    height: 220px;
+    width: clamp(200px, 34vw, 240px);
   }
 }
 
 @media (max-width: 768px) {
   .about {
-    padding: 3rem 1.5rem;
+    padding: clamp(3rem, 12vh, 3.75rem) clamp(1.25rem, 7vw, 2rem);
   }
-  
+
   .sectionTitle {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1.9rem, 6vw, 2.1rem);
   }
-  
+
   .aboutContent {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
     text-align: center;
   }
-  
+
   .photoWrapper {
-    width: 200px;
-    height: 200px;
     margin: 0 auto;
+    width: clamp(180px, 50vw, 220px);
   }
-  
-  .introTitle {
-    font-size: 1.25rem;
+
+  .infoSection {
+    align-items: center;
   }
-  
-  .aboutText {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  
-  .skillsTitle {
-    font-size: 1.1rem;
-  }
-  
+
   .skillsGrid {
     justify-content: center;
   }
-  
+
   .skillTag {
     font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
   .about {
-    padding: 2rem 1rem;
+    padding: clamp(2.5rem, 14vh, 3rem) 1.1rem;
   }
-  
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
-  
+
   .photoWrapper {
-    width: 180px;
-    height: 180px;
+    width: clamp(160px, 60vw, 190px);
   }
-  
-  .introTitle {
-    font-size: 1.1rem;
-  }
-  
+
   .aboutText {
     font-size: 0.95rem;
   }
-  
+
   .skillsGrid {
-    gap: 0.5rem;
+    gap: 0.55rem;
   }
-  
+
   .skillTag {
     font-size: 0.8rem;
     padding: 0.35rem 0.7rem;
+  }
+}
+
+@media (max-height: 720px) and (min-width: 900px) {
+  .about {
+    padding-block: clamp(3.25rem, 14vh, 4.4rem);
   }
 }
 
@@ -232,5 +206,9 @@
 
   .photoWrapper {
     animation: none;
+  }
+
+  .skillTag {
+    transition: none;
   }
 }
