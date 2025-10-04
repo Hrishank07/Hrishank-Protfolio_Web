@@ -8,16 +8,17 @@ import styles from './Hero.module.css'
 
 const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver']
 
-const heroHighlights = [
-  { id: 'recent', label: 'Recent', value: 'AWS SDE Intern' },
-  { id: 'location', label: 'Location', value: 'Los Angeles, CA' },
-  { id: 'focus', label: 'Focus', value: 'Cloud Platforms & AI Systems' },
+const heroMeta = [
+  { id: 'recent', text: 'AWS SDE Intern' },
+  { id: 'location', text: 'Los Angeles, CA' },
+  { id: 'education', text: 'USC Graduate Student' },
+  { id: 'focus', text: 'Cloud platforms & AI systems' },
 ]
 
 const heroStats = [
-  { id: 'impact', value: '35%', label: 'Lambda performance uplift' },
-  { id: 'scale', value: 'Millions', label: 'Of requests supported' },
-  { id: 'projects', value: '8+', label: 'Projects engineered end-to-end' },
+  { id: 'impact', value: '35%', caption: 'Lambda performance uplift' },
+  { id: 'scale', value: 'Millions', caption: 'Requests supported' },
+  { id: 'projects', value: '8+', caption: 'End-to-end launches' },
 ]
 
 export default function Hero() {
@@ -89,25 +90,36 @@ export default function Hero() {
             bridge engineering rigor with user-first thinking.
           </p>
 
-          <div className={styles.heroButtons}>
-            <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`}>
-              <span>Explore Projects</span>
+          <div className={styles.heroActions}>
+            <a href="#projects" className={`${styles.action} ${styles.actionPrimary}`}>
+              View My Work
+            </a>
+            <a href="#contact" className={`${styles.action} ${styles.actionLink}`}>
+              Let’s collaborate
             </a>
             <a
               href="/assets/HrishankC_Resume.pdf"
-              className={`${styles.btn} ${styles.btnSecondary}`}
+              className={`${styles.action} ${styles.actionGhost}`}
               target="_blank"
               rel="noreferrer"
             >
-              <span>Download Résumé</span>
+              Download résumé
             </a>
           </div>
 
-          <div className={styles.heroHighlights}>
-            {heroHighlights.map((highlight) => (
-              <div key={highlight.id} className={styles.highlightCard}>
-                <span className={styles.highlightLabel}>{highlight.label}</span>
-                <span className={styles.highlightValue}>{highlight.value}</span>
+          <div className={styles.heroMeta}>
+            {heroMeta.map((item) => (
+              <span key={item.id} className={styles.metaItem}>
+                {item.text}
+              </span>
+            ))}
+          </div>
+
+          <div className={styles.heroStats}>
+            {heroStats.map((stat) => (
+              <div key={stat.id} className={styles.statItem}>
+                <span className={styles.statValue}>{stat.value}</span>
+                <span className={styles.statCaption}>{stat.caption}</span>
               </div>
             ))}
           </div>
@@ -130,14 +142,6 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className={styles.statGrid}>
-            {heroStats.map((stat) => (
-              <div key={stat.id} className={styles.statCard}>
-                <span className={styles.statValue}>{stat.value}</span>
-                <span className={styles.statLabel}>{stat.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
