@@ -4,42 +4,42 @@
 
 :root {
   /* Light Mode Colors */
-  --primary: #ec5d5d;
-  --primary-light: #818cf8;
-  --primary-dark: #4f46e5;
-  --accent: #14b8a6;
-  --accent-glow: #5eead4;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #f1f3f5;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --text-primary: #1a1d23;
-  --text-secondary: #4b5563;
-  --text-tertiary: #6b7280;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --shadow-color: rgba(0, 0, 0, 0.08);
-  --gradient-opacity: 0.03;
-  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --primary: #6366f1;
+  --primary-light: #a5b4fc;
+  --primary-dark: #4338ca;
+  --accent: #22d3ee;
+  --accent-glow: #67e8f9;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --shadow-color: rgba(15, 23, 42, 0.12);
+  --gradient-opacity: 0.04;
+  --navbar-bg: rgba(248, 250, 252, 0.85);
 }
 
 [data-theme='dark'] {
   /* Dark Mode Colors */
-  --primary: #b7ee9d;
-  --primary-light: #ccd1f2;
-  --primary-dark: #4f46e5;
-  --accent: #14b8a6;
-  --accent-glow: #5eead4;
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --bg-tertiary: #1a1a1a;
-  --bg-card: rgba(18, 18, 18, 0.9);
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  --text-tertiary: #71717a;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --gradient-opacity: 0.08;
-  --navbar-bg: rgba(10, 10, 10, 0.9);
+  --primary: #60a5fa;
+  --primary-light: #93c5fd;
+  --primary-dark: #1d4ed8;
+  --accent: #34d399;
+  --accent-glow: #6ee7b7;
+  --bg-primary: #070b16;
+  --bg-secondary: #0b1224;
+  --bg-tertiary: #101a32;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --text-primary: #e2e8f0;
+  --text-secondary: #b6c3dc;
+  --text-tertiary: #7a8da8;
+  --border-color: rgba(100, 116, 139, 0.25);
+  --shadow-color: rgba(2, 6, 23, 0.6);
+  --gradient-opacity: 0.09;
+  --navbar-bg: rgba(7, 11, 22, 0.82);
 }
 
 * {

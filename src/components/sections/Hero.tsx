@@ -1,19 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import AnimatedBackground from '../animations/AnimatedBackground'
+import HeroGlobe from '../animations/HeroGlobe'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 import styles from './Hero.module.css'
 
 const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver']
-
-const heroMeta = [
-  { id: 'recent', text: 'AWS SDE Intern' },
-  { id: 'location', text: 'Los Angeles, CA' },
-  { id: 'education', text: 'USC Graduate Student' },
-  { id: 'focus', text: 'Cloud platforms & AI systems' },
-]
 
 const heroStats = [
   { id: 'impact', value: '35%', caption: 'Lambda performance uplift' },
@@ -95,7 +88,7 @@ export default function Hero() {
               View My Work
             </a>
             <a href="#contact" className={`${styles.action} ${styles.actionLink}`}>
-              Let’s collaborate
+              Let's collaborate
             </a>
             <a
               href="/assets/HrishankC_Resume.pdf"
@@ -103,16 +96,8 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
             >
-              Download résumé
+              Download resume
             </a>
-          </div>
-
-          <div className={styles.heroMeta}>
-            {heroMeta.map((item) => (
-              <span key={item.id} className={styles.metaItem}>
-                {item.text}
-              </span>
-            ))}
           </div>
 
           <div className={styles.heroStats}>
@@ -126,21 +111,7 @@ export default function Hero() {
         </div>
 
         <div className={styles.visualColumn}>
-          <div className={styles.profileCard}>
-            <span className={styles.profileGlow} aria-hidden="true" />
-            <Image
-              src="/assets/profile.jpg"
-              alt="Hrishank Chhatbar smiling with a blurred city backdrop"
-              fill
-              sizes="(max-width: 768px) 70vw, (max-width: 1200px) 40vw, 420px"
-              className={styles.profileImage}
-              priority
-            />
-            <div className={styles.profileBadge}>
-              <span className={styles.badgeDot} aria-hidden="true" />
-              <span>USC Graduate Student</span>
-            </div>
-          </div>
+          <HeroGlobe />
 
         </div>
       </div>
