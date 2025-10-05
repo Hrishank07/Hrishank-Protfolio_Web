@@ -91,7 +91,7 @@ export default function Contact() {
                 <a key={link.id} href={link.href} className={styles.contactLink}>
                   <span className={styles.contactIcon}>{link.icon}</span>
                   <span className={styles.contactLabel}>{link.label}</span>
-                  <span className={styles.contactArrow} aria-hidden>
+                  <span className={styles.contactArrow} aria-hidden="true">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M7 17L17 7M7 7h10v10" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -125,7 +125,7 @@ export default function Contact() {
                   />
                 </label>
               </div>
-              <label className={styles.fieldLabel}>
+              <label className={`${styles.fieldLabel} ${styles.messageField}`}>
                 <span>Message</span>
                 <textarea
                   placeholder="Tell me about the challenges you're solving…"

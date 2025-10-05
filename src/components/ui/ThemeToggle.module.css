@@ -6,55 +6,84 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 999px;
 }
 
 .toggleTrack {
   position: relative;
-  width: 60px;
-  height: 30px;
-  background: var(--bg-tertiary);
-  border-radius: 30px;
-  padding: 3px;
-  display: flex;
+  width: 64px;
+  height: 32px;
+  border-radius: 999px;
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  justify-content: space-between;
-  padding: 0 6px;
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(123, 139, 255, 0.12);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.trackLight {
+  background: rgba(123, 139, 255, 0.12);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.trackDark {
+  background: rgba(83, 229, 204, 0.18);
+  border-color: rgba(83, 229, 204, 0.25);
 }
 
 .toggleTrack:hover {
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  border-color: rgba(123, 139, 255, 0.35);
+  background: rgba(123, 139, 255, 0.18);
+}
+
+.trackDark:hover {
+  border-color: rgba(83, 229, 204, 0.45);
+  background: rgba(83, 229, 204, 0.26);
 }
 
 .sunIcon,
 .moonIcon {
-  font-size: 16px;
-  z-index: 1;
-  position: relative;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.activeIcon {
+  opacity: 1;
 }
 
 .toggleThumb {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  border-radius: 50%;
-  top: 2px;
-  left: 3px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  top: 50%;
+  left: 6px;
+  transform: translate(0, -50%);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.3s ease;
 }
 
 .toggleThumb.dark {
-  transform: translateX(30px);
+  transform: translate(30px, -50%);
 }
 
 .skeleton {
-  width: 60px;
-  height: 30px;
-  background: var(--bg-tertiary);
-  border-radius: 30px;
+  width: 64px;
+  height: 32px;
+  background: rgba(123, 139, 255, 0.12);
+  border-radius: 999px;
   position: fixed;
   top: 1.5rem;
   right: 3rem;
@@ -65,5 +94,14 @@
   .themeToggle {
     top: 1rem;
     right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleTrack,
+  .toggleThumb,
+  .sunIcon,
+  .moonIcon {
+    transition: none !important;
   }
 }

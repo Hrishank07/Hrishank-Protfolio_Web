@@ -3,31 +3,31 @@ export const projects = [
     id: 1,
     icon: '🚀',
     title: 'AWS Lambda Load Shedding',
-    description: 'Architected a precision throttling mechanism protecting millions of customers with <35μs latency impact.'
+    description: 'Interned at AWS to design a Lambda load-shedding layer that protected multi-tenant workloads while keeping throttling under 35 µs.'
   },
   {
     id: 2,
     icon: '🤖',
     title: 'AI Resume Optimizer',
-    description: 'Full-stack service using OpenAI GPT to analyze and optimize resumes for ATS compatibility.'
+    description: 'Personal full-stack tool that blends OpenAI GPT with vector search to rewrite resumes for ATS signals and recruiter readability.'
   },
   {
     id: 3,
     icon: '💰',
     title: 'Dynamic Pricing Engine',
-    description: 'Built core business logic for revenue management platform, reducing data processing time by 95%.'
+    description: 'Productized a pricing engine for a revenue intelligence startup, slashing nightly analytics runs by 95% and surfacing real-time levers.'
   },
   {
     id: 4,
     icon: '📊',
     title: 'Invoice Processing Pipeline',
-    description: 'Scaled OCR pipeline with Azure Cognitive Services achieving 89% accuracy across multiple languages.'
+    description: 'Led a multilingual OCR pipeline on Azure Cognitive Services, automating finance ops with 89% extraction accuracy across three regions.'
   },
   {
     id: 5,
     icon: '🔐',
     title: '2FA Security Service',
-    description: 'Implemented two-factor authentication enhancing platform security for enterprise users.'
+    description: 'Built a plug-in 2FA microservice (OTP + WebAuthn) to harden enterprise access flows without slowing sign-ins.'
   },
   {
     id: 6,

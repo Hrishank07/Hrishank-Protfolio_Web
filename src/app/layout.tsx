@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'Hrishank Chhatbar - Software Engineer & Cloud Architect',
     template: '%s | Hrishank Chhatbar'
   },
-  description: 'Software Engineer & Cloud Architect specializing in scalable infrastructure and backend services. USC Graduate Student with AWS SDE internship experience.',
+  description: 'Software Engineer & Cloud Architect specializing in scalable infrastructure and backend services. USC Graduate Student.',
   keywords: [
     'Software Engineer',
     'Cloud Architect',
@@ -54,10 +54,10 @@ export const metadata: Metadata = {
     siteName: 'Hrishank Chhatbar Portfolio',
     images: [
       {
-        url: '/Profile_Pic.jpeg',
+        url: 'public/icons/HC_logo.jpg',
         width: 1200,
         height: 630,
-        alt: 'Hrishank Chhatbar - Software Engineer',
+        alt: 'Hrishank Chhatbar logo',
       },
     ],
   },
@@ -65,8 +65,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Hrishank Chhatbar - Software Engineer & Cloud Architect',
     description: 'Software Engineer & Cloud Architect specializing in scalable infrastructure and backend services.',
-    images: ['/Profile_Pic.jpeg'],
+    images: ['/assets/HC_logo.jpg'],
   },
+  
   robots: {
     index: true,
     follow: true,
@@ -82,6 +83,11 @@ export const metadata: Metadata = {
     google: 'your-google-verification-code', // Replace with actual verification code
   },
   category: 'technology',
+  icons: {
+    icon: 'public/icons/HC_logo.jpg',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export const viewport: Viewport = {

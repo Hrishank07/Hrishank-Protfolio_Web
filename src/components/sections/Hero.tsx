@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import AnimatedBackground from '../animations/AnimatedBackground'
 import HeroGlobe from '../animations/HeroGlobe'
@@ -9,9 +10,24 @@ import styles from './Hero.module.css'
 const roles = ['Software Engineer', 'Cloud Architect', 'Problem Solver']
 
 const heroStats = [
-  { id: 'impact', value: '35%', caption: 'Lambda performance uplift' },
-  { id: 'scale', value: 'Millions', caption: 'Requests supported' },
-  { id: 'projects', value: '8+', caption: 'End-to-end launches' },
+  {
+    id: 'aws',
+    type: 'image' as const,
+    src: '/icons/aws.svg',
+    alt: 'AWS logo',
+  },
+  {
+    id: 'usc',
+    type: 'image' as const,
+    src: '/assets/usc.png',
+    alt: 'USC seal',
+  },
+  {
+    id: 'scale',
+    type: 'metric' as const,
+    value: '8M+',
+    label: 'requests safeguarded',
+  },
 ]
 
 export default function Hero() {
@@ -101,12 +117,22 @@ export default function Hero() {
           </div>
 
           <div className={styles.heroStats}>
-            {heroStats.map((stat) => (
-              <div key={stat.id} className={styles.statItem}>
-                <span className={styles.statValue}>{stat.value}</span>
-                <span className={styles.statCaption}>{stat.caption}</span>
-              </div>
-            ))}
+            {heroStats.map((stat) => {
+              if (stat.type === 'image') {
+                return (
+                  <span key={stat.id} className={styles.statLogo}>
+                    <Image src={stat.src} alt={stat.alt} width={48} height={48} />
+                  </span>
+                )
+              }
+
+              return (
+                <span key={stat.id} className={styles.statMetric}>
+                  <span className={styles.statMetricValue}>{stat.value}</span>
+                  <span className={styles.statMetricLabel}>{stat.label}</span>
+                </span>
+              )
+            })}
           </div>
         </div>
 
